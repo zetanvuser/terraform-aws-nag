@@ -91,4 +91,14 @@ resource "aws_s3_bucket" "dev_local" {
     bucket = "devlocalbucketnag19112024tfstateversioning"
   
 }
+
+terraform {
+  backend "s3" {
+    bucket = "publicaccesstest05112024"
+    region = "ap-south-1"
+    key = "terraform.tfstate"
+    encrypt = true
+    
+  }
+}
 #create EC2
