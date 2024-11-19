@@ -38,7 +38,7 @@ resource "aws_route_table" "dev_local" {
 
   route {
 
-    cidr_block = "0.0.0.0"
+    cidr_block = "0.0.0.0/24"
     gateway_id = aws_internet_gateway.dev_local.id
   }
 }
@@ -71,10 +71,10 @@ ingress {
 }
 ingress {
     description = "Inbound rules"
- from_port = 80
- to_port = 80
- protocol = "tcp"
- cidr_blocks = ["0.0.0.0/0"]
+     from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
 
 }
 egress {
@@ -86,4 +86,9 @@ egress {
 }
 }
 
+#create S3 bucket
+resource "aws_s3_bucket" "dev_local" {
+    bucket = "devlocalbucketnag19112024tfstateversioning"
+  
+}
 #create EC2
